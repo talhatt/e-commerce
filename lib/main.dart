@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:mobile_eticaret/screens/home_screen.dart';
-import 'package:mobile_eticaret/theme.dart';
+import 'package:mobile_eticaret/constants.dart';
+import 'package:mobile_eticaret/routes.dart';
+import 'package:mobile_eticaret/screens/welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,10 +11,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: myTheme,
+      title: 'Material App',
       debugShowCheckedModeBanner: false,
-      title: 'Mobile e-ticaret',
-      home: HomeScreen(),
+      theme: ThemeData(
+        textTheme: TextTheme(
+          bodyText1: TextStyle(color: kTextColor),
+          bodyText2: TextStyle(color: kTextColor),
+        ),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      initialRoute: WelcomeScreen.routeName,
+      routes: routes,
     );
   }
 }
