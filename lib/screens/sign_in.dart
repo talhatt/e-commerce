@@ -102,7 +102,7 @@ class _SignInState extends State<SignIn> {
                     child: Row(
                       children: <Widget>[
                         GestureDetector(
-                          onTap: () async {},
+                          onTap: () {},
                           child: Container(
                             padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
@@ -118,17 +118,20 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                         SizedBox(width: 20),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.black,
+                              ),
+                            ),
+                            child: Icon(
+                              CustomIcons.google_icon,
                               color: Colors.black,
                             ),
-                          ),
-                          child: Icon(
-                            CustomIcons.google_icon,
-                            color: Colors.black,
                           ),
                         ),
                         Spacer(),

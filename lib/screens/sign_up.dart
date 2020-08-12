@@ -121,37 +121,45 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.only(bottom: 30.0),
                     child: Row(
                       children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.black,
-                              )),
-                          child: Icon(
-                            CustomIcons.facebook_2,
-                            color: Colors.black,
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.black,
+                                )),
+                            child: Icon(
+                              CustomIcons.facebook_2,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: 20,
                         ),
-                        Container(
-                          padding: EdgeInsets.all(16.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.black,
+                              ),
+                            ),
+                            child: Icon(
+                              CustomIcons.google_icon,
                               color: Colors.black,
                             ),
-                          ),
-                          child: Icon(
-                            CustomIcons.google_icon,
-                            color: Colors.black,
                           ),
                         ),
                         Spacer(),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, "/home");
+                          },
                           child: Container(
                             padding: EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
