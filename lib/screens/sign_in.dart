@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_eticaret/constants.dart';
-import 'package:mobile_eticaret/screens/sign_up.dart';
+import 'package:mobile_eticaret/constants.dart' as CustomIcons;
 
 class SignIn extends StatefulWidget {
   static String routeName = "/signIn";
@@ -112,7 +112,7 @@ class _SignInState extends State<SignIn> {
                               ),
                             ),
                             child: Icon(
-                              Icons.outlined_flag,
+                              CustomIcons.facebook_2,
                               color: Colors.black,
                             ),
                           ),
@@ -127,7 +127,7 @@ class _SignInState extends State<SignIn> {
                             ),
                           ),
                           child: Icon(
-                            Icons.chat,
+                            CustomIcons.google_icon,
                             color: Colors.black,
                           ),
                         ),
