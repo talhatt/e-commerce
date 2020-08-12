@@ -1,6 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mobile_eticaret/constants.dart' as CustomIcons;
+import 'package:mobile_eticaret/constants.dart';
+import 'package:mobile_eticaret/size_config.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -95,6 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return CustomScrollView(
       slivers: <Widget>[
         buildSliverAppBar(),
+        buildCarousel(),
+        buildSliverToBoxAdapter(),
+        buildSliverList(),
       ],
     );
   }
@@ -134,6 +140,58 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  buildSliverToBoxAdapter() {
+    return SliverToBoxAdapter(
+      child: Container(
+        height: 100.0,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Container(
+              width: 100.0,
+              child: Card(
+                child: Text('data'),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  buildSliverList() {
+    return SliverList(
+      // Use a delegate to build items as they're scrolled on screen.
+      delegate: SliverChildBuilderDelegate(
+        // The builder function returns a ListTile with a title that
+        // displays the index of the current item.
+        (context, index) => ListTile(title: Text('Item #$index')),
+        // Builds 1000 ListTiles
+        childCount: 10,
+      ),
+    );
+  }
+
+  buildCarousel() {
+    return SliverToBoxAdapter(
+      child: Container(
+        child: CarouselSlider.builder(
+          options: CarouselOptions(
+            autoPlay: true,
+            height: getProportionateScreenHeight(200),
+          ),
+          itemCount: imageNames.length,
+          itemBuilder: (BuildContext context, int itemIndex) => Container(
+            child: Image(
+              image: AssetImage(imageNames[itemIndex]),
             ),
           ),
         ),
