@@ -35,9 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       label: Text("Hesabım")),
                   Spacer(),
                   FlatButton.icon(
-                      onPressed: () {},
-                      icon: Icon(CustomIcons.log_out),
-                      label: Text("Giriş Yap")),
+                    icon: Icon(CustomIcons.log_out),
+                    label: Text("Giriş Yap"),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/signIn");
+                    },
+                  ),
                 ],
               ),
             ),
