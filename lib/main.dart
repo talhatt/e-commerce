@@ -14,6 +14,13 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        dividerTheme: DividerThemeData(
+          space: 20,
+          thickness: 1,
+          color: kPrimaryColor,
+          indent: 20,
+          endIndent: 20,
+        ),
         textTheme: TextTheme(
           bodyText1: TextStyle(color: kTextColor),
           bodyText2: TextStyle(color: kTextColor),

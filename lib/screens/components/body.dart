@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile_eticaret/components/default_button.dart';
 import 'package:mobile_eticaret/constants.dart';
 import 'package:mobile_eticaret/screens/components/splash_content.dart';
-import 'package:mobile_eticaret/screens/home_screen.dart';
 import 'package:mobile_eticaret/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -13,7 +12,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
-    {"image": "assets/images/welcome_1.jpg", "text": "Hoşgeldiniz!"},
+    {"image": "assets/images/welcome_1.jpg", "text": "Hoşgeldiniz :)"},
     {
       "image": "assets/images/welcome_2.jpg",
       "text": "Hemen alış-verişe başlayın"
