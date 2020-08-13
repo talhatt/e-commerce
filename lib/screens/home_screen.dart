@@ -98,9 +98,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return CustomScrollView(
       slivers: <Widget>[
         buildSliverAppBar(),
+        buildSpacer(),
         buildCarousel(),
+        buildSpacer(),
         buildSliverToBoxAdapter(),
+        buildSpacer(),
+        buildSliverGrid(),
+        buildSpacer(),
+        buildSliverToBoxAdapter(),
+        buildSpacer(),
         buildSliverList(),
+        buildSpacer(),
       ],
     );
   }
@@ -149,19 +157,60 @@ class _HomeScreenState extends State<HomeScreen> {
 
   buildSliverToBoxAdapter() {
     return SliverToBoxAdapter(
-      child: Container(
-        height: 100.0,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Container(
-              width: 100.0,
-              child: Card(
-                child: Text('data'),
-              ),
-            );
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, "/specialDeals");
           },
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    blurRadius: 7,
+                    spreadRadius: 5,
+                    offset: Offset(0, 3),
+                  )
+                ]),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+                  child: Row(
+                    children: <Widget>[
+                      Text("Özel Fırsatlar",
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 100.0,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: imageNames.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 100.0,
+                        child: Card(
+                          child: Image(
+                            image: AssetImage(imageNames[index]),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -182,19 +231,89 @@ class _HomeScreenState extends State<HomeScreen> {
 
   buildCarousel() {
     return SliverToBoxAdapter(
-      child: Container(
-        child: CarouselSlider.builder(
-          options: CarouselOptions(
-            autoPlay: true,
-            height: getProportionateScreenHeight(200),
-          ),
-          itemCount: imageNames.length,
-          itemBuilder: (BuildContext context, int itemIndex) => Container(
-            child: Image(
-              image: AssetImage(imageNames[itemIndex]),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, "/topRatedProducts");
+          },
+          child: Container(
+            width: 200,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                )
+              ],
+            ),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "Popüler Ürünler",
+                        style: TextStyle(
+                            color: CustomIcons.kPrimaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+                CarouselSlider.builder(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    height: getProportionateScreenHeight(200),
+                  ),
+                  itemCount: imageNames.length,
+                  itemBuilder: (BuildContext context, int itemIndex) =>
+                      Container(
+                    child: Image(
+                      image: AssetImage(imageNames[itemIndex]),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  buildSliverGrid() {
+    return SliverGrid(
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 250.0,
+        mainAxisSpacing: 5.0,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return Container(
+            width: 100,
+            height: index.isEven ? 100 : 200,
+            child: Image(
+              image: AssetImage(imageNames[index]),
+            ),
+          );
+        },
+        childCount: imageNames.length,
+      ),
+    );
+  }
+
+  buildSpacer() {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 10.0,
       ),
     );
   }

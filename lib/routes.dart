@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_eticaret/screens/home_screen.dart';
 import 'package:mobile_eticaret/screens/sign_in.dart';
 import 'package:mobile_eticaret/screens/sign_up.dart';
+import 'package:mobile_eticaret/screens/special_deals.dart';
+import 'package:mobile_eticaret/screens/top_rated_products.dart';
 import 'package:mobile_eticaret/screens/welcome_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -9,4 +11,6 @@ final Map<String, WidgetBuilder> routes = {
   HomeScreen.routeName: (context) => HomeScreen(),
   SignIn.routeName: (context) => SignIn(),
   SignUp.routeName: (context) => SignUp(),
+  TopRatedProducts.routeName: (context) => TopRatedProducts(),
+  SpecialDeals.routeName: (context) => SpecialDeals(),
 };

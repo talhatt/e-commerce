@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         dividerTheme: DividerThemeData(
           space: 20,
           thickness: 1,
