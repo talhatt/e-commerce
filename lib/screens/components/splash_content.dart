@@ -28,7 +28,10 @@ class SplashContent extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Text(text),
+          Text(
+            text,
+            style: TextStyle(fontSize: 25),
+          ),
           Spacer(
             flex: 2,
           ),

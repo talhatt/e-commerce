@@ -15,13 +15,11 @@ class _SignUpState extends State<SignUp> {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/welcome_1.jpg"),
-                  fit: BoxFit.contain,
-                  alignment: Alignment.bottomCenter,
+                  image: AssetImage("assets/images/logo.jpg"),
                 ),
               ),
             ),
@@ -44,8 +42,13 @@ class _SignUpState extends State<SignUp> {
                           style: Theme.of(context).textTheme.button,
                         ),
                       ),
-                      Text("Kaydol",
-                          style: Theme.of(context).textTheme.display1),
+                      Text(
+                        "Kaydol",
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 40,
+                        ),
+                      ),
                     ],
                   ),
                   Spacer(),
@@ -126,13 +129,12 @@ class _SignUpState extends State<SignUp> {
                           child: Container(
                             padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.black,
-                                )),
+                              color: kPrimaryColor,
+                              shape: BoxShape.circle,
+                            ),
                             child: Icon(
                               CustomIcons.facebook_2,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -144,14 +146,12 @@ class _SignUpState extends State<SignUp> {
                           child: Container(
                             padding: EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
+                              color: kPrimaryColor,
                               shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.black,
-                              ),
                             ),
                             child: Icon(
                               CustomIcons.google_icon,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                         ),

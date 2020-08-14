@@ -1,41 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_eticaret/constants.dart' as CustomIcons;
+import 'package:mobile_eticaret/screens/components/drawer.dart';
 
 class Categories extends StatelessWidget {
   static String routeName = "/categories";
+  GlobalKey<ScaffoldState> scaffold = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Column();
-  }
-
-  Column buildColumn() {
-    return Column(
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    TabBar(tabs: [
-                      Icon(Icons.ac_unit),
-                    ])
-                  ],
-                ),
-                decoration: BoxDecoration(color: Colors.white),
-              ),
-            ),
-            Container(
-              height: 750,
-              width: 350,
-              child: Icon(Icons.access_alarm),
-              decoration: BoxDecoration(
-                color: Colors.red,
-              ),
-            ),
-          ],
-        ),
-      ],
+    return Scaffold(
+      key: scaffold,
+      drawer: Drawer(child: DrawerBuilder()),
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(CustomIcons.user),
+            onPressed: () {
+              scaffold.currentState.openDrawer();
+            }),
+        title: Center(child: Text("Kategoriler")),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.notifications),
+              onPressed: () {
+                Navigator.pushNamed(context, "/notification");
+              }),
+          IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.pushNamed(context, "/cart");
+              }),
+        ],
+      ),
     );
   }
 }

@@ -15,13 +15,11 @@ class _SignInState extends State<SignIn> {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/welcome_1.jpg"),
-                  fit: BoxFit.contain,
-                  alignment: Alignment.bottomCenter,
+                  image: AssetImage("assets/images/logo.jpg"),
                 ),
               ),
             ),
@@ -37,7 +35,7 @@ class _SignInState extends State<SignIn> {
                     children: <Widget>[
                       Text(
                         "Giriş Yap",
-                        style: Theme.of(context).textTheme.display1,
+                        style: TextStyle(color: kPrimaryColor, fontSize: 40),
                       ),
                       GestureDetector(
                           onTap: () {
@@ -106,14 +104,12 @@ class _SignInState extends State<SignIn> {
                           child: Container(
                             padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
+                              color: kPrimaryColor,
                               shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.black,
-                              ),
                             ),
                             child: Icon(
                               CustomIcons.facebook_2,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -123,14 +119,12 @@ class _SignInState extends State<SignIn> {
                           child: Container(
                             padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
+                              color: kPrimaryColor,
                               shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.black,
-                              ),
                             ),
                             child: Icon(
                               CustomIcons.google_icon,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                         ),

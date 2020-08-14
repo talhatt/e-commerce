@@ -10,6 +10,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  bool _visible = false;
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {"image": "assets/images/welcome_1.jpg", "text": "Hoşgeldiniz :)"},
@@ -30,6 +31,11 @@ class _BodyState extends State<Body> {
                   onPageChanged: (value) {
                     setState(() {
                       currentPage = value;
+                      if (currentPage == splashData.length - 1) {
+                        _visible = true;
+                      } else {
+                        _visible = false;
+                      }
                     });
                   },
                   itemCount: splashData.length,
@@ -53,11 +59,14 @@ class _BodyState extends State<Body> {
                   Spacer(
                     flex: 3,
                   ),
-                  DefaultButton(
-                    text: "Başla",
-                    press: () {
-                      Navigator.pushNamed(context, "/home");
-                    },
+                  Visibility(
+                    visible: _visible,
+                    child: DefaultButton(
+                      text: "Başla",
+                      press: () {
+                        Navigator.pushNamed(context, "/home");
+                      },
+                    ),
                   ),
                   Spacer(),
                 ],

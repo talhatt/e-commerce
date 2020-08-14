@@ -10,7 +10,14 @@ class _SpecialDealsState extends State<SpecialDeals> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Özel Fırsat Ürünleri")),
+      body: Center(
+          child: Text(
+        "Özel Fırsat Ürünleri",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+        ),
+      )),
     );
   }
 }

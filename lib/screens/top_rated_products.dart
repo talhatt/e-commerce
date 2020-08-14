@@ -10,7 +10,14 @@ class _TopRatedProductsState extends State<TopRatedProducts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Popüler Ürünler")),
+      body: Center(
+          child: Text(
+        "Popüler Ürünler",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+        ),
+      )),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_eticaret/screens/categories.dart';
+import 'package:mobile_eticaret/screens/components/cart_screen.dart';
+import 'package:mobile_eticaret/screens/components/notification_screen.dart';
 import 'package:mobile_eticaret/screens/home_screen.dart';
 import 'package:mobile_eticaret/screens/sign_in.dart';
 import 'package:mobile_eticaret/screens/sign_up.dart';
@@ -15,4 +17,6 @@ final Map<String, WidgetBuilder> routes = {
   TopRatedProducts.routeName: (context) => TopRatedProducts(),
   SpecialDeals.routeName: (context) => SpecialDeals(),
   Categories.routeName: (context) => Categories(),
+  NotificationScreen.routeName: (context) => NotificationScreen(),
+  CartScreen.routeName: (context) => CartScreen(),
 };
