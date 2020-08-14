@@ -29,6 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ListView(
         children: <Widget>[
           DrawerHeader(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/logo.jpg"),
+                  alignment: Alignment.topCenter),
+            ),
             child: Container(
               child: Row(
                 children: <Widget>[
@@ -48,47 +53,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          ListTile(
-            title: Text("Ana Sayfa"),
-            leading: Icon(Icons.home),
-            onTap: () {
-              Navigator.pushNamed(context, "/home");
-            },
+          AddToDrawerMenu(
+            text: "Ana Sayfa",
+            routeName: "/home",
+            iconName: Icons.home,
           ),
-          ListTile(
-            title: Text("Kategoriler"),
-            leading: Icon(Icons.menu),
-            onTap: () {},
+          AddToDrawerMenu(
+            text: "Kategoriler",
+            routeName: "/categories",
+            iconName: Icons.menu,
           ),
           Divider(),
-          ListTile(
-            title: Text("Çok Satanlar"),
-            leading: Icon(Icons.star),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text("Kampanyalar"),
-            leading: Icon(CustomIcons.gift_icon),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text("Süper Fırsatlar"),
-            leading: Icon(CustomIcons.flash_icon),
-            onTap: () {},
-          ),
+          AddToDrawerMenu(text: "Çok Satanlar", iconName: Icons.star),
+          AddToDrawerMenu(text: "Kampanyalar", iconName: CustomIcons.gift_icon),
+          AddToDrawerMenu(
+              text: "Süper Fırsatlar", iconName: CustomIcons.flash_icon),
           Divider(),
-          ListTile(
-            title: Text("Canlı Destek"),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text("Geri Bildirim"),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text("Yardım"),
-            onTap: () {},
-          ),
+          AddToDrawerMenu(text: "Canlı Destek"),
+          AddToDrawerMenu(text: "Geri Bildirim"),
+          AddToDrawerMenu(text: "Yardım"),
         ],
       ),
     );
@@ -195,13 +178,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 100.0,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: imageNames.length,
+                    itemCount: shoesImages.length,
                     itemBuilder: (context, index) {
                       return Container(
                         width: 100.0,
                         child: Card(
                           child: Image(
-                            image: AssetImage(imageNames[index]),
+                            image: AssetImage(shoesImages[index]),
                           ),
                         ),
                       );
@@ -218,12 +201,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   buildSliverList() {
     return SliverList(
-      // Use a delegate to build items as they're scrolled on screen.
       delegate: SliverChildBuilderDelegate(
-        // The builder function returns a ListTile with a title that
-        // displays the index of the current item.
-        (context, index) => ListTile(title: Text('Item #$index')),
-        // Builds 1000 ListTiles
+        (context, index) => Card(
+            margin: EdgeInsets.symmetric(vertical: 5),
+            child: Image(
+              image: AssetImage(shoesImages[index]),
+            )),
         childCount: 10,
       ),
     );
@@ -270,14 +253,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 CarouselSlider.builder(
                   options: CarouselOptions(
+                    autoPlayCurve: Curves.easeInOutBack,
                     autoPlay: true,
-                    height: getProportionateScreenHeight(200),
+                    height: getProportionateScreenHeight(250),
+                    viewportFraction: 1.0,
+                    enlargeCenterPage: false,
                   ),
-                  itemCount: imageNames.length,
+                  itemCount: shirtImages.length,
                   itemBuilder: (BuildContext context, int itemIndex) =>
                       Container(
-                    child: Image(
-                      image: AssetImage(imageNames[itemIndex]),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(shirtImages[itemIndex]),
+                      ),
                     ),
                   ),
                 ),
@@ -298,14 +286,12 @@ class _HomeScreenState extends State<HomeScreen> {
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           return Container(
-            width: 100,
-            height: index.isEven ? 100 : 200,
             child: Image(
-              image: AssetImage(imageNames[index]),
+              image: AssetImage(jacketImages[index]),
             ),
           );
         },
-        childCount: imageNames.length,
+        childCount: jacketImages.length,
       ),
     );
   }
@@ -316,5 +302,29 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 10.0,
       ),
     );
+  }
+}
+
+class AddToDrawerMenu extends StatelessWidget {
+  const AddToDrawerMenu({
+    Key key,
+    this.text,
+    this.routeName,
+    this.iconName,
+  }) : super(key: key);
+  final String text;
+  final String routeName;
+  final IconData iconName;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+        title: Text(text, style: TextStyle(fontWeight: FontWeight.w900)),
+        leading: iconName == null ? null : Icon(iconName),
+        onTap: routeName == null
+            ? () {}
+            : () {
+                Navigator.pushNamed(context, routeName);
+              });
   }
 }

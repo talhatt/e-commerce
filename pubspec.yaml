@@ -30,6 +30,9 @@ flutter:
    - assets/images/
    - assets/icons/
    - assets/images/shoes/
+   - assets/images/shirts/
+   - assets/images/jackets/
+   - assets/images/pants/
   
   fonts:
     - family: MyFlutterApp

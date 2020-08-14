@@ -32,10 +32,16 @@ class SplashContent extends StatelessWidget {
           Spacer(
             flex: 2,
           ),
-          Image.asset(
-            image,
+          Container(
             height: getProportionateScreenHeight(265),
             width: getProportionateScreenWidth(235),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage(image)),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.orangeAccent,
+              ),
+            ),
           )
         ],
       ),

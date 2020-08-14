@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:mobile_eticaret/constants.dart';
 import 'package:mobile_eticaret/routes.dart';
@@ -14,6 +13,9 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: kPrimaryColor,
+        ),
         scaffoldBackgroundColor: Colors.white,
         dividerTheme: DividerThemeData(
           space: 20,

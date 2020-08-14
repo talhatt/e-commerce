@@ -14,13 +14,50 @@ const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
-const List<String> imageNames = <String>[
+const List<String> shoesImages = <String>[
   'assets/images/shoes/1.jpg',
   'assets/images/shoes/2.jpg',
   'assets/images/shoes/3.jpg',
   'assets/images/shoes/4.jpg',
   'assets/images/shoes/5.jpg',
   'assets/images/shoes/6.jpg',
+  'assets/images/shoes/7.jpg',
+  'assets/images/shoes/8.jpg',
+  'assets/images/shoes/9.jpg',
+  'assets/images/shoes/10.jpg',
+  'assets/images/shoes/11.jpg',
+  'assets/images/shoes/12.jpg',
+  'assets/images/shoes/13.jpg',
+];
+const List<String> shirtImages = <String>[
+  'assets/images/shirts/1.jpg',
+  'assets/images/shirts/2.jpg',
+  'assets/images/shirts/3.jpg',
+  'assets/images/shirts/4.jpg',
+  'assets/images/shirts/5.jpg',
+  'assets/images/shirts/6.jpg',
+  'assets/images/shirts/7.jpg',
+  'assets/images/shirts/8.jpg',
+];
+const List<String> pantImages = <String>[
+  'assets/images/pants/1.jpg',
+  'assets/images/pants/2.jpg',
+  'assets/images/pants/3.jpg',
+  'assets/images/pants/4.jpg',
+  'assets/images/pants/5.jpg',
+  'assets/images/pants/6.jpg',
+];
+const List<String> jacketImages = <String>[
+  'assets/images/jackets/1.jpg',
+  'assets/images/jackets/2.jpg',
+  'assets/images/jackets/3.jpg',
+  'assets/images/jackets/4.jpg',
+  'assets/images/jackets/5.jpg',
+  'assets/images/jackets/6.jpg',
+  'assets/images/jackets/7.jpg',
+  'assets/images/jackets/8.jpg',
+  'assets/images/jackets/9.jpg',
+  'assets/images/jackets/10.jpg',
 ];
 
 const _kFontFam = 'MyFlutterApp';
