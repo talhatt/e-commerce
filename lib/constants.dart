@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mobile_eticaret/models/product.dart';
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
@@ -14,50 +15,275 @@ const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
-const List<String> shoesImages = <String>[
-  'assets/images/shoes/1.jpg',
-  'assets/images/shoes/2.jpg',
-  'assets/images/shoes/3.jpg',
-  'assets/images/shoes/4.jpg',
-  'assets/images/shoes/5.jpg',
-  'assets/images/shoes/6.jpg',
-  'assets/images/shoes/7.jpg',
-  'assets/images/shoes/8.jpg',
-  'assets/images/shoes/9.jpg',
-  'assets/images/shoes/10.jpg',
-  'assets/images/shoes/11.jpg',
-  'assets/images/shoes/12.jpg',
-  'assets/images/shoes/13.jpg',
+List<Product> jackets = [
+  Product(
+    image: "assets/images/jackets/1.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/2.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/3.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/4.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/5.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/6.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/7.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/8.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/9.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/jackets/10.jpg",
+    description:
+        "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
+    price: "100",
+    productName: "İsim",
+  ),
 ];
-const List<String> shirtImages = <String>[
-  'assets/images/shirts/1.jpg',
-  'assets/images/shirts/2.jpg',
-  'assets/images/shirts/3.jpg',
-  'assets/images/shirts/4.jpg',
-  'assets/images/shirts/5.jpg',
-  'assets/images/shirts/6.jpg',
-  'assets/images/shirts/7.jpg',
-  'assets/images/shirts/8.jpg',
+
+List<Product> shirts = [
+  Product(
+    image: "assets/images/shirts/1.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "100",
+    productName: "Gri Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shirts/2.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "150",
+    productName: "Sarı Gömlek",
+  ),
+  Product(
+    image: "assets/images/shirts/3.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "125",
+    productName: "Mavi Gömlek",
+  ),
+  Product(
+    image: "assets/images/shirts/4.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "200",
+    productName: "Kırmızı Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shirts/5.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "110",
+    productName: "Sarı Gömlek",
+  ),
+  Product(
+    image: "assets/images/shirts/6.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "80",
+    productName: "Siyah Çizgili Gömlek",
+  ),
+  Product(
+    image: "assets/images/shirts/7.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "77",
+    productName: "Kırmızı Gömlek",
+  ),
+  Product(
+    image: "assets/images/shirts/8.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
 ];
-const List<String> pantImages = <String>[
-  'assets/images/pants/1.jpg',
-  'assets/images/pants/2.jpg',
-  'assets/images/pants/3.jpg',
-  'assets/images/pants/4.jpg',
-  'assets/images/pants/5.jpg',
-  'assets/images/pants/6.jpg',
+
+List<Product> shoes = [
+  Product(
+    image: "assets/images/shoes/1.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "100",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/2.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/3.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/4.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/5.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/6.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/7.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/8.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/9.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/10.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/11.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/12.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
+  Product(
+    image: "assets/images/shoes/13.jpg",
+    description:
+        "Consectetur eu magna officia est officia et enim velit eu velit in excepteur. Consectetur dolor magna occaecat anim nisi ad magna dolore cupidatat ut labore nisi ullamco. Enim consequat aute duis ad eiusmod. Non minim fugiat tempor id ullamco eiusmod amet fugiat consequat reprehenderit aliquip.",
+    price: "300",
+    productName: "Siyah Kareli Gömlek",
+  ),
 ];
-const List<String> jacketImages = <String>[
-  'assets/images/jackets/1.jpg',
-  'assets/images/jackets/2.jpg',
-  'assets/images/jackets/3.jpg',
-  'assets/images/jackets/4.jpg',
-  'assets/images/jackets/5.jpg',
-  'assets/images/jackets/6.jpg',
-  'assets/images/jackets/7.jpg',
-  'assets/images/jackets/8.jpg',
-  'assets/images/jackets/9.jpg',
-  'assets/images/jackets/10.jpg',
+
+List<Product> pants = [
+  Product(
+    image: "assets/images/pants/1.jpg",
+    description:
+        "Commodo adipisicing ex eu duis. Elit et do ullamco ea dolore consectetur consequat proident nulla consectetur eiusmod. Consequat excepteur sunt id ea. Labore aliquip incididunt pariatur et eu voluptate est consequat ex nulla commodo commodo.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/pants/2.jpg",
+    description:
+        "Commodo adipisicing ex eu duis. Elit et do ullamco ea dolore consectetur consequat proident nulla consectetur eiusmod. Consequat excepteur sunt id ea. Labore aliquip incididunt pariatur et eu voluptate est consequat ex nulla commodo commodo.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/pants/3.jpg",
+    description:
+        "Commodo adipisicing ex eu duis. Elit et do ullamco ea dolore consectetur consequat proident nulla consectetur eiusmod. Consequat excepteur sunt id ea. Labore aliquip incididunt pariatur et eu voluptate est consequat ex nulla commodo commodo.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/pants/4.jpg",
+    description:
+        "Commodo adipisicing ex eu duis. Elit et do ullamco ea dolore consectetur consequat proident nulla consectetur eiusmod. Consequat excepteur sunt id ea. Labore aliquip incididunt pariatur et eu voluptate est consequat ex nulla commodo commodo.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/pants/5.jpg",
+    description:
+        "Commodo adipisicing ex eu duis. Elit et do ullamco ea dolore consectetur consequat proident nulla consectetur eiusmod. Consequat excepteur sunt id ea. Labore aliquip incididunt pariatur et eu voluptate est consequat ex nulla commodo commodo.",
+    price: "100",
+    productName: "İsim",
+  ),
+  Product(
+    image: "assets/images/pants/6.jpg",
+    description:
+        "Commodo adipisicing ex eu duis. Elit et do ullamco ea dolore consectetur consequat proident nulla consectetur eiusmod. Consequat excepteur sunt id ea. Labore aliquip incididunt pariatur et eu voluptate est consequat ex nulla commodo commodo.",
+    price: "100",
+    productName: "İsim",
+  ),
 ];
 
 const _kFontFam = 'MyFlutterApp';

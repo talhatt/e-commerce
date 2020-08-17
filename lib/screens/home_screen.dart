@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mobile_eticaret/constants.dart' as CustomIcons;
 import 'package:mobile_eticaret/constants.dart';
+import 'package:mobile_eticaret/models/product.dart';
 import 'package:mobile_eticaret/screens/components/drawer.dart';
 import 'package:mobile_eticaret/size_config.dart';
 
@@ -28,30 +29,70 @@ class _HomeScreenState extends State<HomeScreen> {
   CustomScrollView buildCustomScrollView() {
     return CustomScrollView(
       slivers: <Widget>[
-        buildSliverAppBar(),
+        CustomSliverAppBar(
+          scaffold: scaffold,
+          context: context,
+          title: "LogDef",
+        ),
         buildSpacer(),
-        buildCarousel(),
+        CustomCarousel(
+          products: shirts,
+          title: "Popüler Ürünler",
+          routeName: "/topRatedProducts",
+        ),
         buildSpacer(),
-        buildSliverToBoxAdapter(),
+        CustomSliverToBoxAdapter(
+          products: shoes,
+          routeName: "/specialDeals",
+          title: "Özel Fırsatlar",
+        ),
         buildSpacer(),
-        buildSliverGrid(),
+        CustomSliverGrid(products: jackets),
         buildSpacer(),
-        buildSliverToBoxAdapter(),
+        CustomSliverToBoxAdapter(
+          products: pants,
+          routeName: "/specialDeals",
+          title: "%20 İndirimli Ürünler",
+        ),
         buildSpacer(),
-        buildSliverList(),
+        CustomSliverList(
+          products: shoes,
+        ),
         buildSpacer(),
       ],
     );
   }
 
-  SliverAppBar buildSliverAppBar() {
+  buildSpacer() {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 10.0,
+      ),
+    );
+  }
+}
+
+class CustomSliverAppBar extends StatelessWidget {
+  const CustomSliverAppBar({
+    Key key,
+    @required this.scaffold,
+    @required this.context,
+    @required this.title,
+  }) : super(key: key);
+
+  final GlobalKey<ScaffoldState> scaffold;
+  final BuildContext context;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     return SliverAppBar(
       leading: IconButton(
           icon: Icon(CustomIcons.user),
           onPressed: () {
             scaffold.currentState.openDrawer();
           }),
-      title: Center(child: Text("LogDef")),
+      title: Center(child: Text(title)),
       actions: <Widget>[
         IconButton(
             icon: Icon(Icons.notifications),
@@ -92,88 +133,91 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
 
-  buildSliverToBoxAdapter() {
-    return SliverToBoxAdapter(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, "/specialDeals");
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
-                    blurRadius: 7,
-                    spreadRadius: 5,
-                    offset: Offset(0, 3),
-                  )
-                ]),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
-                  child: Row(
-                    children: <Widget>[
-                      Text("Özel Fırsatlar",
-                          style: TextStyle(
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                          )),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 100.0,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: shoesImages.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        width: 100.0,
-                        child: Card(
-                          child: Image(
-                            image: AssetImage(shoesImages[index]),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+class CustomSliverList extends StatelessWidget {
+  const CustomSliverList({
+    Key key,
+    this.products,
+  }) : super(key: key);
 
-  buildSliverList() {
+  final List<Product> products;
+
+  @override
+  Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) => Card(
             margin: EdgeInsets.symmetric(vertical: 5),
             child: Image(
-              image: AssetImage(shoesImages[index]),
+              image: AssetImage(products[index].image),
             )),
         childCount: 10,
       ),
     );
   }
+}
 
-  buildCarousel() {
+class CustomSliverGrid extends StatelessWidget {
+  const CustomSliverGrid({
+    Key key,
+    @required this.products,
+  }) : super(key: key);
+
+  final List<Product> products;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverGrid(
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 250.0,
+        childAspectRatio: 1 / 1.70,
+        crossAxisSpacing: 10,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return Stack(
+            children: <Widget>[
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    Image(
+                      image: AssetImage(products[index].image),
+                    ),
+                    Text(products[index].productName),
+                    Text("${products[index].price} TL"),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+        childCount: products.length,
+      ),
+    );
+  }
+}
+
+class CustomCarousel extends StatelessWidget {
+  const CustomCarousel({
+    Key key,
+    @required this.products,
+    @required this.title,
+    @required this.routeName,
+  }) : super(key: key);
+
+  final List<Product> products;
+  final String title;
+  final String routeName;
+
+  @override
+  Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, "/topRatedProducts");
+            Navigator.pushNamed(context, routeName);
           },
           child: Container(
             width: 200,
@@ -197,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: <Widget>[
                       Text(
-                        "Popüler Ürünler",
+                        title,
                         style: TextStyle(
                             color: CustomIcons.kPrimaryColor,
                             fontWeight: FontWeight.bold,
@@ -214,12 +258,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     viewportFraction: 1.0,
                     enlargeCenterPage: false,
                   ),
-                  itemCount: shirtImages.length,
+                  itemCount: products.length,
                   itemBuilder: (BuildContext context, int itemIndex) =>
                       Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(shirtImages[itemIndex]),
+                        image: AssetImage(products[itemIndex].image),
                       ),
                     ),
                   ),
@@ -231,30 +275,83 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
 
-  buildSliverGrid() {
-    return SliverGrid(
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 250.0,
-        mainAxisSpacing: 5.0,
-      ),
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          return Container(
-            child: Image(
-              image: AssetImage(jacketImages[index]),
-            ),
-          );
-        },
-        childCount: jacketImages.length,
-      ),
-    );
-  }
+class CustomSliverToBoxAdapter extends StatelessWidget {
+  const CustomSliverToBoxAdapter({
+    Key key,
+    @required this.products,
+    @required this.routeName,
+    @required this.title,
+  }) : super(key: key);
 
-  buildSpacer() {
+  final List<Product> products;
+  final String routeName;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: SizedBox(
-        height: 10.0,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, routeName);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    blurRadius: 7,
+                    spreadRadius: 5,
+                    offset: Offset(0, 3),
+                  )
+                ]),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+                  child: Row(
+                    children: <Widget>[
+                      Text(title,
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 180.0,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 100.0,
+                        child: Column(
+                          children: <Widget>[
+                            Card(
+                              child: Image(
+                                image: AssetImage(products[index].image),
+                              ),
+                            ),
+                            Text(products[index].productName),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
