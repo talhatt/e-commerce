@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_eticaret/screens/categories.dart';
 import 'package:mobile_eticaret/screens/components/cart_screen.dart';
 import 'package:mobile_eticaret/screens/components/notification_screen.dart';
+import 'package:mobile_eticaret/screens/components/product_detail.dart';
 import 'package:mobile_eticaret/screens/home_screen.dart';
 import 'package:mobile_eticaret/screens/sign_in.dart';
 import 'package:mobile_eticaret/screens/sign_up.dart';

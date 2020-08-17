@@ -21,28 +21,28 @@ List<Product> jackets = [
     description:
         "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
     price: "100",
-    productName: "İsim",
+    productName: "Kahverengi Ceket",
   ),
   Product(
     image: "assets/images/jackets/2.jpg",
     description:
         "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
     price: "100",
-    productName: "İsim",
+    productName: "Kırmızı Ceket",
   ),
   Product(
     image: "assets/images/jackets/3.jpg",
     description:
         "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
     price: "100",
-    productName: "İsim",
+    productName: "Siyah Ceket",
   ),
   Product(
     image: "assets/images/jackets/4.jpg",
     description:
         "Exercitation proident aliquip nostrud ullamco reprehenderit duis occaecat sunt nisi incididunt. Culpa est ut ex incididunt occaecat est consequat voluptate laboris mollit. Consequat labore in laboris ad adipisicing eiusmod eiusmod sunt. Velit anim est ipsum excepteur dolor nulla id ad id officia nisi laboris. Et duis esse nulla ut consectetur excepteur velit exercitation culpa. Mollit adipisicing fugiat velit occaecat id eiusmod quis ad veniam sint laboris nulla.",
     price: "100",
-    productName: "İsim",
+    productName: "Sarı Ceket",
   ),
   Product(
     image: "assets/images/jackets/5.jpg",
