@@ -3,7 +3,6 @@ import 'package:mobile_eticaret/constants.dart';
 import 'package:mobile_eticaret/models/product.dart';
 import 'package:mobile_eticaret/screens/components/custom_app_bar.dart';
 import 'package:mobile_eticaret/screens/components/drawer.dart';
-import 'package:mobile_eticaret/size_config.dart';
 
 class ProductDetail extends StatefulWidget {
   const ProductDetail({Key key, @required this.product}) : super(key: key);
@@ -39,19 +38,21 @@ class _ProductDetailState extends State<ProductDetail> {
             child: Container(
               child: Column(
                 children: <Widget>[
-                  Hero(
-                    tag: product.image,
-                    child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          //TODO: Farklı telefon ekranlarına göre optimize edilecek
-                          AspectRatio(
+                  Container(
+                    child: Column(
+                      children: <Widget>[
+                        Hero(
+                          tag: product.imageName,
+                          child: AspectRatio(
                             aspectRatio: 1 / 1,
                             child: Image(
-                              image: AssetImage(product.image),
+                              image: AssetImage(product.imageName),
                             ),
                           ),
-                          Text(
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
                             product.productName,
                             style: TextStyle(
                               color: kSecondaryColor,
@@ -59,22 +60,22 @@ class _ProductDetailState extends State<ProductDetail> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            "${product.price} TL",
-                            style: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ),
+                        Text(
+                          "${product.price} TL",
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Text(
-                            product.description,
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
+                        ),
+                        Text(
+                          product.description,
+                          style: TextStyle(
+                            fontSize: 15,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

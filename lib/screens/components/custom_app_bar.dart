@@ -51,6 +51,7 @@ class CustomSliverAppBar extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         hintText: "Search",
+                        enabledBorder: InputBorder.none,
                       ),
                     ),
                   ),

@@ -17,6 +17,9 @@ dependencies:
   flutter_svg:
   provider:
   carousel_slider:
+  http:
+  image_picker:
+  path:
 
 dev_dependencies:
   flutter_test:

@@ -7,6 +7,7 @@ import 'package:mobile_eticaret/models/product.dart';
 import 'package:mobile_eticaret/screens/components/custom_app_bar.dart';
 import 'package:mobile_eticaret/screens/components/drawer.dart';
 import 'package:mobile_eticaret/screens/components/product_detail.dart';
+import 'package:mobile_eticaret/services/db_service.dart';
 import 'package:mobile_eticaret/size_config.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,6 +20,21 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   String objectName;
+  List<Product> _products;
+
+  _getProducts() {
+    DbHelper.getProducts().then((products) {
+      setState(() {
+        _products = products;
+        print(_products.length);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    _getProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +53,38 @@ class _HomeScreenState extends State<HomeScreen> {
           context: context,
           title: "LogDef",
         ),
-        buildSpacer(),
-        CustomCarousel(
-          products: shirts,
+        //buildSpacer(),
+        /*CustomCarousel(
+          products: _products,
           title: "Popüler Ürünler",
           routeName: "/topRatedProducts",
         ),
-        buildSpacer(),
+        */
+        //buildSpacer(),
+        /*
         CustomSliverToBoxAdapter(
-          products: shoes,
+          products: _products,
           routeName: "/specialDeals",
           title: "Özel Fırsatlar",
         ),
-        buildSpacer(),
+        */
+        //buildSpacer(),
+        /*
         CustomSliverGrid(products: jackets),
-        buildSpacer(),
-        CustomSliverToBoxAdapter(
+        */
+        //buildSpacer(),
+        /* CustomSliverToBoxAdapter(
           products: pants,
           routeName: "/specialDeals",
           title: "%20 İndirimli Ürünler",
         ),
-        buildSpacer(),
-        CustomSliverList(
+        */
+        //buildSpacer(),
+        /*CustomSliverList(
           products: shoes,
         ),
-        buildSpacer(),
+        */
+        //buildSpacer(),
       ],
     );
   }
@@ -90,7 +113,7 @@ class CustomSliverList extends StatelessWidget {
         (context, index) => Card(
             margin: EdgeInsets.symmetric(vertical: 5),
             child: Image(
-              image: AssetImage(products[index].image),
+              image: AssetImage(products[index].imageName),
             )),
         childCount: 10,
       ),
@@ -118,18 +141,18 @@ class CustomSliverGrid extends StatelessWidget {
         (BuildContext context, int index) {
           return Stack(
             children: <Widget>[
-              Hero(
-                tag: products[index].image,
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Image(
-                        image: AssetImage(products[index].image),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    Hero(
+                      tag: products[index].imageName,
+                      child: Image(
+                        image: AssetImage(products[index].imageName),
                       ),
-                      Text(products[index].productName),
-                      Text("${products[index].price} TL"),
-                    ],
-                  ),
+                    ),
+                    Text(products[index].productName),
+                    Text("${products[index].price} TL"),
+                  ],
                 ),
               ),
               Material(
@@ -217,13 +240,10 @@ class CustomCarousel extends StatelessWidget {
                   itemCount: products.length,
                   itemBuilder: (BuildContext context, int itemIndex) =>
                       Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(products[itemIndex].image),
-                      ),
-                    ),
+                    child: Image.network("http://localhost/images/pants/1.jpg"),
                   ),
                 ),
+                Text((products.length).toString()),
               ],
             ),
           ),
@@ -294,7 +314,7 @@ class CustomSliverToBoxAdapter extends StatelessWidget {
                           children: <Widget>[
                             Card(
                               child: Image(
-                                image: AssetImage(products[index].image),
+                                image: AssetImage(products[index].imageName),
                               ),
                             ),
                             Text(products[index].productName),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mobile_eticaret/models/product.dart';
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
@@ -15,6 +14,7 @@ const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
+/*
 List<Product> jackets = [
   Product(
     image: "assets/images/jackets/1.jpg",
@@ -285,6 +285,7 @@ List<Product> pants = [
     productName: "İsim",
   ),
 ];
+*/
 
 const _kFontFam = 'MyFlutterApp';
 const _kFontPkg = null;
