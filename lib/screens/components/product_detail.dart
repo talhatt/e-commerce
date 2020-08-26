@@ -45,9 +45,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           tag: product.imageName,
                           child: AspectRatio(
                             aspectRatio: 1 / 1,
-                            child: Image(
-                              image: AssetImage(product.imageName),
-                            ),
+                            child: Image.network(product.imageName),
                           ),
                         ),
                         Padding(

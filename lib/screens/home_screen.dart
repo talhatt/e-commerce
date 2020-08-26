@@ -20,20 +20,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   String objectName;
-  List<Product> _products;
+  List<Product> products;
 
-  _getProducts() {
-    DbHelper.getProducts().then((products) {
+  _getProductsByCategory() {
+    DbHelper.getProductsByCategory("jackets").then((value) {
       setState(() {
-        _products = products;
-        print(_products.length);
+        products = value;
       });
     });
   }
 
   @override
   void initState() {
-    _getProducts();
+    products = [];
+    _getProductsByCategory();
   }
 
   @override
@@ -53,38 +53,31 @@ class _HomeScreenState extends State<HomeScreen> {
           context: context,
           title: "LogDef",
         ),
-        //buildSpacer(),
-        /*CustomCarousel(
-          products: _products,
+        buildSpacer(),
+        CustomCarousel(
+          products: products,
           title: "Popüler Ürünler",
           routeName: "/topRatedProducts",
         ),
-        */
-        //buildSpacer(),
-        /*
+        buildSpacer(),
         CustomSliverToBoxAdapter(
-          products: _products,
+          products: products,
           routeName: "/specialDeals",
           title: "Özel Fırsatlar",
         ),
-        */
-        //buildSpacer(),
-        /*
-        CustomSliverGrid(products: jackets),
-        */
-        //buildSpacer(),
-        /* CustomSliverToBoxAdapter(
-          products: pants,
+        buildSpacer(),
+        CustomSliverGrid(products: products),
+        buildSpacer(),
+        CustomSliverToBoxAdapter(
+          products: products,
           routeName: "/specialDeals",
           title: "%20 İndirimli Ürünler",
         ),
-        */
-        //buildSpacer(),
-        /*CustomSliverList(
-          products: shoes,
+        buildSpacer(),
+        CustomSliverList(
+          products: products,
         ),
-        */
-        //buildSpacer(),
+        buildSpacer(),
       ],
     );
   }
@@ -112,10 +105,10 @@ class CustomSliverList extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) => Card(
             margin: EdgeInsets.symmetric(vertical: 5),
-            child: Image(
-              image: AssetImage(products[index].imageName),
-            )),
-        childCount: 10,
+            child: products.length == 0
+                ? CircularProgressIndicator()
+                : Image.network(products[index].imageName)),
+        childCount: products.length,
       ),
     );
   }
@@ -146,9 +139,9 @@ class CustomSliverGrid extends StatelessWidget {
                   children: <Widget>[
                     Hero(
                       tag: products[index].imageName,
-                      child: Image(
-                        image: AssetImage(products[index].imageName),
-                      ),
+                      child: products.length == 0
+                          ? CircularProgressIndicator()
+                          : Image.network(products[index].imageName),
                     ),
                     Text(products[index].productName),
                     Text("${products[index].price} TL"),
@@ -240,10 +233,11 @@ class CustomCarousel extends StatelessWidget {
                   itemCount: products.length,
                   itemBuilder: (BuildContext context, int itemIndex) =>
                       Container(
-                    child: Image.network("http://localhost/images/pants/1.jpg"),
+                    child: products.length == 0
+                        ? CircularProgressIndicator()
+                        : Image.network(products[itemIndex].imageName),
                   ),
                 ),
-                Text((products.length).toString()),
               ],
             ),
           ),
@@ -313,9 +307,9 @@ class CustomSliverToBoxAdapter extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Card(
-                              child: Image(
-                                image: AssetImage(products[index].imageName),
-                              ),
+                              child: products.length == 0
+                                  ? CircularProgressIndicator()
+                                  : Image.network(products[index].imageName),
                             ),
                             Text(products[index].productName),
                           ],

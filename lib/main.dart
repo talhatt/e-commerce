@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mobile_eticaret/constants.dart';
 import 'package:mobile_eticaret/routes.dart';
 import 'package:mobile_eticaret/screens/welcome_screen.dart';
@@ -9,6 +10,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,

@@ -4,14 +4,14 @@ import 'package:mobile_eticaret/constants.dart' as CustomIcons;
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
     Key key,
-    @required this.scaffold,
     @required this.context,
     @required this.title,
+    @required this.scaffold,
   }) : super(key: key);
 
-  final GlobalKey<ScaffoldState> scaffold;
   final BuildContext context;
   final String title;
+  final GlobalKey<ScaffoldState> scaffold;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class CustomSliverAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
           child: Padding(
-            padding: const EdgeInsets.only(top: 80),
+            padding: const EdgeInsets.only(top: 60),
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
               decoration: BoxDecoration(
@@ -50,7 +50,7 @@ class CustomSliverAppBar extends StatelessWidget {
                     child: TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
-                        hintText: "Search",
+                        hintText: "Ürün Ara",
                         enabledBorder: InputBorder.none,
                       ),
                     ),

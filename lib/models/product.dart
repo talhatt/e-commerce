@@ -28,12 +28,13 @@ class Product {
   }
 
   factory Product.fromJson(Map<String, dynamic> json) {
+    print("calisti");
     return Product(
-      id: json['id'] as int,
+      id: int.parse(json['id']),
       productName: json['name'] as String,
       description: json['description'] as String,
       imageName: json['image_name'] as String,
-      price: json['price'] as double,
+      price: double.parse(json['price']),
       categoryName: json['category_name'] as String,
     );
   }
