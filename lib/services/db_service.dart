@@ -51,6 +51,8 @@ class DbHelper {
   // Method to get  products by category_name from Database...
   static Future<List<Product>> getProductsByCategory(
       String categoryName) async {
+    //Ana sayfa açılırken animasyon gösterimi için
+    await Future.delayed(Duration(milliseconds: 1000));
     try {
       final response =
           await http.post("${_GET_ALL_BY_CATEGORY_NAME}${categoryName}");

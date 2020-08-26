@@ -23,11 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Product> products;
 
   _getProductsByCategory() {
-    DbHelper.getProductsByCategory("jackets").then((value) {
+    DbHelper.getProductsByCategory("shoes").then((value) {
       setState(() {
         products = value;
       });
     });
+  }
+
+  Future<Null> refreshList() async {
+    await Future.delayed(Duration(milliseconds: 500));
+    _getProductsByCategory();
   }
 
   @override
@@ -45,40 +50,48 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  CustomScrollView buildCustomScrollView() {
-    return CustomScrollView(
-      slivers: <Widget>[
-        CustomSliverAppBar(
-          scaffold: scaffold,
-          context: context,
-          title: "LogDef",
-        ),
-        buildSpacer(),
-        CustomCarousel(
-          products: products,
-          title: "Popüler Ürünler",
-          routeName: "/topRatedProducts",
-        ),
-        buildSpacer(),
-        CustomSliverToBoxAdapter(
-          products: products,
-          routeName: "/specialDeals",
-          title: "Özel Fırsatlar",
-        ),
-        buildSpacer(),
-        CustomSliverGrid(products: products),
-        buildSpacer(),
-        CustomSliverToBoxAdapter(
-          products: products,
-          routeName: "/specialDeals",
-          title: "%20 İndirimli Ürünler",
-        ),
-        buildSpacer(),
-        CustomSliverList(
-          products: products,
-        ),
-        buildSpacer(),
-      ],
+  buildCustomScrollView() {
+    return RefreshIndicator(
+      onRefresh: refreshList,
+      child: products.length == 0
+          ? Center(
+              child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
+            ))
+          : CustomScrollView(
+              slivers: <Widget>[
+                CustomSliverAppBar(
+                  scaffold: scaffold,
+                  context: context,
+                  title: "LogDef",
+                ),
+                buildSpacer(),
+                CustomCarousel(
+                  products: products,
+                  title: "Popüler Ürünler",
+                  routeName: "/topRatedProducts",
+                ),
+                buildSpacer(),
+                CustomSliverToBoxAdapter(
+                  products: products,
+                  routeName: "/specialDeals",
+                  title: "Özel Fırsatlar",
+                ),
+                buildSpacer(),
+                CustomSliverGrid(products: products),
+                buildSpacer(),
+                CustomSliverToBoxAdapter(
+                  products: products,
+                  routeName: "/specialDeals",
+                  title: "%20 İndirimli Ürünler",
+                ),
+                buildSpacer(),
+                CustomSliverList(
+                  products: products,
+                ),
+                buildSpacer(),
+              ],
+            ),
     );
   }
 
@@ -106,7 +119,9 @@ class CustomSliverList extends StatelessWidget {
         (context, index) => Card(
             margin: EdgeInsets.symmetric(vertical: 5),
             child: products.length == 0
-                ? CircularProgressIndicator()
+                ? CircularProgressIndicator(
+                    backgroundColor: kPrimaryColor,
+                  )
                 : Image.network(products[index].imageName)),
         childCount: products.length,
       ),
@@ -234,7 +249,9 @@ class CustomCarousel extends StatelessWidget {
                   itemBuilder: (BuildContext context, int itemIndex) =>
                       Container(
                     child: products.length == 0
-                        ? CircularProgressIndicator()
+                        ? CircularProgressIndicator(
+                            backgroundColor: kPrimaryColor,
+                          )
                         : Image.network(products[itemIndex].imageName),
                   ),
                 ),
