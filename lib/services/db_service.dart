@@ -35,7 +35,7 @@ class DbHelper {
   static Future<List<Product>> getProducts() async {
     try {
       final response = await http.post(_GET_ALL);
-      print("getResponse: ${response.body}");
+      //print("getResponse: ${response.body}");
       if (200 == response.statusCode) {
         List<Product> list = parseResponse(response.body);
         return list;
@@ -56,7 +56,7 @@ class DbHelper {
     try {
       final response =
           await http.post("${_GET_ALL_BY_CATEGORY_NAME}${categoryName}");
-      print("getResponse: ${response.body}");
+      //print("getResponse: ${response.body}");
       if (200 == response.statusCode) {
         List<Product> list = parseResponse(response.body);
         return list;
@@ -78,7 +78,7 @@ class DbHelper {
   static Future<String> addProduct(Map map) async {
     try {
       final response = await http.post(_ADD_PRO, body: map);
-      print("addProduct Response: ${response.body}");
+      //print("addProduct Response: ${response.body}");
       if (200 == response.statusCode) {
         return response.body;
       } else {
@@ -94,7 +94,7 @@ class DbHelper {
   static Future<String> updateProduct(Map map) async {
     try {
       final response = await http.post(_UPDATE_PRO, body: map);
-      print("updateProduct Response: ${response.body}");
+      //print("updateProduct Response: ${response.body}");
       if (200 == response.statusCode) {
         return response.body;
       } else {
@@ -114,7 +114,7 @@ class DbHelper {
       var map = Map<String, dynamic>();
       map['id'] = id;
       final response = await http.post(_DELETE_PRO, body: map);
-      print("deleteProduct Response: ${response.body}");
+      //print("deleteProduct Response: ${response.body}");
       if (200 == response.statusCode) {
         return response.body;
       } else {

@@ -20,12 +20,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
   String objectName;
-  List<Product> products;
+  List<Product> shoes;
+  List<Product> jackets;
 
   _getProductsByCategory() {
     DbHelper.getProductsByCategory("shoes").then((value) {
       setState(() {
-        products = value;
+        shoes = value;
+      });
+    });
+    DbHelper.getProductsByCategory("jackets").then((value) {
+      setState(() {
+        jackets = value;
       });
     });
   }
@@ -37,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    products = [];
+    shoes = [];
+    jackets = [];
     _getProductsByCategory();
   }
 
@@ -53,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
   buildCustomScrollView() {
     return RefreshIndicator(
       onRefresh: refreshList,
-      child: products.length == 0
+      child: (shoes.length == 0 || jackets.length == 0)
           ? Center(
               child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
@@ -67,27 +74,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 buildSpacer(),
                 CustomCarousel(
-                  products: products,
+                  products: jackets,
                   title: "Popüler Ürünler",
                   routeName: "/topRatedProducts",
                 ),
                 buildSpacer(),
                 CustomSliverToBoxAdapter(
-                  products: products,
+                  products: shoes,
                   routeName: "/specialDeals",
                   title: "Özel Fırsatlar",
                 ),
                 buildSpacer(),
-                CustomSliverGrid(products: products),
+                CustomSliverGrid(products: jackets),
                 buildSpacer(),
                 CustomSliverToBoxAdapter(
-                  products: products,
+                  products: shoes,
                   routeName: "/specialDeals",
                   title: "%20 İndirimli Ürünler",
                 ),
                 buildSpacer(),
                 CustomSliverList(
-                  products: products,
+                  products: shoes,
                 ),
                 buildSpacer(),
               ],
@@ -119,8 +126,10 @@ class CustomSliverList extends StatelessWidget {
         (context, index) => Card(
             margin: EdgeInsets.symmetric(vertical: 5),
             child: products.length == 0
-                ? CircularProgressIndicator(
-                    backgroundColor: kPrimaryColor,
+                ? Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: kPrimaryColor,
+                    ),
                   )
                 : Image.network(products[index].imageName)),
         childCount: products.length,
@@ -155,7 +164,7 @@ class CustomSliverGrid extends StatelessWidget {
                     Hero(
                       tag: products[index].imageName,
                       child: products.length == 0
-                          ? CircularProgressIndicator()
+                          ? Center(child: CircularProgressIndicator())
                           : Image.network(products[index].imageName),
                     ),
                     Text(products[index].productName),
@@ -249,8 +258,10 @@ class CustomCarousel extends StatelessWidget {
                   itemBuilder: (BuildContext context, int itemIndex) =>
                       Container(
                     child: products.length == 0
-                        ? CircularProgressIndicator(
-                            backgroundColor: kPrimaryColor,
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: kPrimaryColor,
+                            ),
                           )
                         : Image.network(products[itemIndex].imageName),
                   ),
@@ -325,7 +336,7 @@ class CustomSliverToBoxAdapter extends StatelessWidget {
                           children: <Widget>[
                             Card(
                               child: products.length == 0
-                                  ? CircularProgressIndicator()
+                                  ? Center(child: CircularProgressIndicator())
                                   : Image.network(products[index].imageName),
                             ),
                             Text(products[index].productName),
