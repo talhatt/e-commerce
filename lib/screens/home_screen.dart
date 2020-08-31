@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mobile_eticaret/constants.dart' as CustomIcons;
@@ -123,15 +124,90 @@ class CustomSliverList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => Card(
-            margin: EdgeInsets.symmetric(vertical: 5),
-            child: products.length == 0
-                ? Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: kPrimaryColor,
-                    ),
-                  )
-                : Image.network(products[index].imageName)),
+        (context, index) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Stack(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 25),
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 9,
+                        child: Container(
+                          child: Hero(
+                            tag: products[index].imageName,
+                            child: Image.network(
+                              products[index].imageName,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                          flex: 1,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 8.8),
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)),
+                              color: kPrimaryColor,
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(products[index].productName,
+                                        style: TextStyle(
+                                            color: kPrimaryLightColor,
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 20)),
+                                    Spacer(),
+                                    IconButton(
+                                      icon: Icon(Icons.favorite,
+                                          color: kPrimaryLightColor),
+                                      onPressed: () {},
+                                      alignment: Alignment.bottomRight,
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                        products[index].price.toString() +
+                                            " TL",
+                                        style: TextStyle(
+                                            color: kPrimaryLightColor,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22)),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ProductDetail(product: products[index]),
+                          ));
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
         childCount: products.length,
       ),
     );
@@ -263,7 +339,10 @@ class CustomCarousel extends StatelessWidget {
                               backgroundColor: kPrimaryColor,
                             ),
                           )
-                        : Image.network(products[itemIndex].imageName),
+                        : Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: Image.network(products[itemIndex].imageName),
+                          ),
                   ),
                 ),
               ],
