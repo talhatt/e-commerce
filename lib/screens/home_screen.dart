@@ -126,84 +126,74 @@ class CustomSliverList extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           return Container(
+            margin: EdgeInsets.only(top: 20),
             height: MediaQuery.of(context).size.height * 0.8,
-            child: Stack(
+            child: Column(
               children: [
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 25),
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 9,
-                        child: Container(
-                          child: Hero(
-                            tag: products[index].imageName,
-                            child: Image.network(
-                              products[index].imageName,
-                            ),
+                Expanded(
+                  flex: 9,
+                  child: Container(
+                    margin: EdgeInsets.only(left: 8.5),
+                    child: Stack(
+                      children: [
+                        Hero(
+                          tag: products[index].imageName,
+                          child: Image.network(
+                            products[index].imageName,
                           ),
                         ),
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ProductDetail(product: products[index]),
+                                  ));
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 7),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10)),
+                        color: Colors.black87,
                       ),
-                      Expanded(
-                          flex: 1,
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 8.8),
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
-                              color: kPrimaryColor,
-                            ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(products[index].productName,
-                                        style: TextStyle(
-                                            color: kPrimaryLightColor,
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 20)),
-                                    Spacer(),
-                                    IconButton(
-                                      icon: Icon(Icons.favorite,
-                                          color: kPrimaryLightColor),
-                                      onPressed: () {},
-                                      alignment: Alignment.bottomRight,
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                        products[index].price.toString() +
-                                            " TL",
-                                        style: TextStyle(
-                                            color: kPrimaryLightColor,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 22)),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )),
-                    ],
-                  ),
-                ),
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                ProductDetail(product: products[index]),
-                          ));
-                    },
-                  ),
-                ),
+                      child: Row(
+                        children: [
+                          Text(products[index].productName,
+                              style: TextStyle(
+                                  color: kPrimaryLightColor,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20)),
+                          Spacer(),
+                          IconButton(
+                            icon: Icon(Icons.add_shopping_cart,
+                                color: kPrimaryLightColor),
+                            onPressed: () {
+                              _addProductToCart(products[index].id, "1");
+                            },
+                            alignment: Alignment.bottomRight,
+                          ),
+                          Spacer(),
+                          Text(products[index].price.toString() + " TL",
+                              style: TextStyle(
+                                  color: kPrimaryLightColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22)),
+                        ],
+                      ),
+                    )),
               ],
             ),
           );
@@ -211,6 +201,10 @@ class CustomSliverList extends StatelessWidget {
         childCount: products.length,
       ),
     );
+  }
+
+  void _addProductToCart(int id, String value) async {
+    await DbHelper.addProductToCart(id, value);
   }
 }
 

@@ -6,9 +6,12 @@ class DbHelper {
   static const _GET_ALL = 'http://10.0.2.2/EmployeesDB/read.php';
   static const _ADD_PRO = 'http://10.0.2.2/EmployeesDB/insert.php';
   static const _UPDATE_PRO = 'http://10.0.2.2/EmployeesDB/update.php';
+  static const _ADD_CART =
+      'http://10.0.2.2/EmployeesDB/update.php?action="ADD_CART"';
   static const _DELETE_PRO = 'http://10.0.2.2/EmployeesDB/delete.php';
   static const _GET_ALL_BY_CATEGORY_NAME =
       'http://10.0.2.2/EmployeesDB/read.php?category_name=';
+  static const _GET_INCART = 'http://10.0.2.2/EmployeesDB/read.php?incart=1';
 
   //Method to create the table Employees.
   /*
@@ -69,6 +72,22 @@ class DbHelper {
     }
   }
 
+  static Future<List<Product>> getProductsByIncart() async {
+    try {
+      final response = await http.post(_GET_INCART);
+      //print("getResponse: ${response.body}");
+      if (200 == response.statusCode) {
+        List<Product> list = parseResponse(response.body);
+        return list;
+      } else {
+        return List<Product>();
+      }
+    } catch (e) {
+      print(e);
+      return List<Product>(); // return an empyt list on exeption/error
+    }
+  }
+
   static List<Product> parseResponse(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<Product>((json) => Product.fromJson(json)).toList();
@@ -95,6 +114,25 @@ class DbHelper {
     try {
       final response = await http.post(_UPDATE_PRO, body: map);
       //print("updateProduct Response: ${response.body}");
+      if (200 == response.statusCode) {
+        return response.body;
+      } else {
+        return "error";
+      }
+    } catch (e) {
+      print(e);
+      return "error";
+    }
+  }
+
+  // Method to add a product in Cart Table
+  static Future<String> addProductToCart(int id, String value) async {
+    Map<String, dynamic> map = new Map<String, dynamic>();
+    map['id'] = id.toString();
+    map['incart'] = value;
+    try {
+      final response = await http.post(_ADD_CART, body: map);
+      print("updateProduct Response: ${response.body}");
       if (200 == response.statusCode) {
         return response.body;
       } else {
